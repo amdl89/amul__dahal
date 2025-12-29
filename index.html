@@ -197,15 +197,19 @@
           }),
           (e.__SV = 1));
       })(document, window.posthog || []);
-      // Initialize PostHog - Replace 'YOUR_PROJECT_API_KEY' with your actual PostHog API key
+      // Initialize PostHog
+      // TODO: Replace 'YOUR_PROJECT_API_KEY' with your actual PostHog project API key
       posthog.init("YOUR_PROJECT_API_KEY", {
-        api_host: "https://us.i.posthog.com", // Change to your PostHog instance URL if different
+        api_host: "https://us.i.posthog.com",
+        person_profiles: "identified_only",
+        capture_pageview: true,
+        capture_pageleave: true,
         loaded: function (posthog) {
-          // Track initial page view
-          posthog.capture("$pageview", {
+          // Track initial page view with custom properties
+          posthog.capture("page_viewed", {
             page_title: document.title,
             page_url: window.location.href,
-            page_type: "home",
+            page_type: "portfolio_home",
           });
         },
       });
@@ -563,12 +567,13 @@
             <!-- Card 1 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Real Estate Listing"
             >
               <a
                 href="https://portfolio-real-estate-listing.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__real_estate_listing.mp4"
@@ -610,12 +615,13 @@
             <!-- Card 2 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Shopify Store"
             >
               <a
                 href="https://vintage-modista.myshopify.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__shopify_store.mp4"
@@ -656,12 +662,13 @@
             <!-- Card 3 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Landing Page"
             >
               <a
                 href="https://portfoliolandingpage1.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__landing_page1.mp4"
@@ -703,12 +710,13 @@
             <!-- Card 4 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Promotional Email"
             >
               <a
                 href="https://portfolio-promotional-email.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__promotional_email.mp4"
@@ -750,12 +758,13 @@
             <!-- Card 5 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Transactional Email"
             >
               <a
                 href="https://portfolio-transactional-email.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__transactional_email.mp4"
@@ -796,12 +805,13 @@
             <!-- Card 6 -->
             <article
               class="group rounded-md border border-zinc-200 bg-white overflow-hidden"
+              data-project="Newsletter Email"
             >
               <a
                 href="https://portfolio-newsletter-email.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="relative overflow-hidden block"
+                class="relative overflow-hidden block project-link"
               >
                 <video
                   src="/videos/portfolio__newsletter_email.mp4"
@@ -926,10 +936,57 @@
       window.addEventListener("DOMContentLoaded", () => {
         lucide.createIcons();
 
-        // Set video playback speed to 0.5x
+        // Set video playback speed to 0.75x
         document.querySelectorAll("video").forEach((video) => {
           video.playbackRate = 0.75;
         });
+
+        // PostHog Event Tracking
+        // Track project clicks
+        document.querySelectorAll(".project-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            const projectName = link.closest("article").dataset.project;
+            posthog?.capture("project_clicked", {
+              project_name: projectName,
+              project_url: link.href,
+            });
+          });
+        });
+
+        // Track contact button clicks
+        document
+          .querySelectorAll('a[href^="mailto:"], a[href="#contact"]')
+          .forEach((link) => {
+            link.addEventListener("click", () => {
+              posthog?.capture("contact_clicked", {
+                contact_type: link.href.startsWith("mailto:")
+                  ? "email"
+                  : "contact_section",
+              });
+            });
+          });
+
+        // Track navigation clicks
+        document
+          .querySelectorAll('header a[href^="#"], footer a[href^="#"]')
+          .forEach((link) => {
+            link.addEventListener("click", () => {
+              posthog?.capture("navigation_clicked", {
+                section: link.getAttribute("href").substring(1),
+              });
+            });
+          });
+
+        // Track social link clicks
+        document
+          .querySelectorAll('a[href*="github.com"], a[href*="linkedin.com"]')
+          .forEach((link) => {
+            link.addEventListener("click", () => {
+              posthog?.capture("social_clicked", {
+                platform: link.href.includes("github") ? "github" : "linkedin",
+              });
+            });
+          });
       });
 
       // Mobile menu toggle
