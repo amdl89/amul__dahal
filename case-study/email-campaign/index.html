@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <title>Nexus Newsletter Case Study | James Jackson Portfolio</title>
+    <meta
+      name="title"
+      content="Nexus Newsletter Case Study | James Jackson Portfolio"
+    />
+    <meta
+      name="description"
+      content="Case study of cross-client email compatibility solution achieving 100% rendering across 40+ email clients including Outlook, Gmail, and Apple Mail."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Inter font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../css/main.css" />
+
+    <!-- PostHog Analytics -->
+    <script>
+      !(function (t, e) {
+        var o, n, p, r;
+        e.__SV ||
+          ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split(".");
+              2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                });
+            }
+            ((p = t.createElement("script")).type = "text/javascript"),
+              (p.async = !0),
+              (p.src = s.api_host + "/static/array.js"),
+              (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                p,
+                r
+              );
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                u.people = u.people || [],
+                u.toString = function (t) {
+                  var e = "posthog";
+                  return (
+                    "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+                  );
+                },
+                u.people.toString = function () {
+                  return u.toString(1) + ".people (stub)";
+                },
+                o =
+                  "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(
+                    " "
+                  ),
+                n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+      })(document, window.posthog || []);
+      posthog.init("phc_BiwcC3FSLQuXkbSwS9zt6nUbE0WG9lW9wtVhsfpZhgx", {
+        api_host: "https://us.i.posthog.com",
+        loaded: function (posthog) {
+          // Track initial page view
+          posthog.capture("$pageview", {
+            page_title: document.title,
+            page_url: window.location.href,
+            page_type: "case_study",
+            case_study_name: "Nexus Newsletter",
+          });
+        },
+      });
+    </script>
+
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+    </style>
+  </head>
+  <body class="bg-white text-zinc-900 antialiased">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b border-zinc-200"
+    >
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex items-center justify-between py-4">
+          <!-- Left: Logo + Desktop Nav -->
+          <div class="flex items-center gap-8">
+            <a href="../../index.html" class="inline-flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900 text-sm font-medium tracking-tight"
+                >AD</span
+              >
+            </a>
+            <nav
+              class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-700"
+            >
+              <a
+                href="../../index.html#projects"
+                class="hover:text-zinc-900 transition"
+                >Portfolio</a
+              >
+              <a
+                href="../../index.html#about"
+                class="hover:text-zinc-900 transition"
+                >My Story</a
+              >
+            </nav>
+          </div>
+
+          <!-- Right: Email + CTA -->
+          <div class="hidden md:flex items-center gap-4">
+            <a
+              href="mailto:amuldahal89@gmail.com"
+              class="text-xs font-medium text-zinc-600 tracking-tight hover:text-zinc-900 transition"
+              >AMULDAHAL89@GMAIL.COM</a
+            >
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Let's Connect</span>
+            </a>
+          </div>
+
+          <!-- Mobile Controls -->
+          <div class="md:hidden flex items-center gap-2">
+            <button
+              id="mobileMenuBtn"
+              aria-label="Open menu"
+              class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900"
+            >
+              <i data-lucide="menu" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobileMenu" class="hidden border-t border-zinc-200 pb-4">
+          <nav
+            class="flex flex-col gap-3 pt-4 text-sm font-medium text-zinc-700"
+          >
+            <a
+              href="../../index.html#projects"
+              class="hover:text-zinc-900 transition"
+              >Portfolio</a
+            >
+            <a
+              href="../../index.html#about"
+              class="hover:text-zinc-900 transition"
+              >My Story</a
+            >
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition w-max"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Let's Connect</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Case Study Title -->
+      <section class="pt-16 pb-8 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex items-center gap-2 mb-6">
+            <span
+              class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+              >Email Automation</span
+            >
+            <span
+              class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+              >Welcome Flow</span
+            >
+          </div>
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight"
+          >
+            Vintage Apparel Brand — Klaviyo Welcome Series
+          </h1>
+          <p class="mt-6 text-lg text-zinc-600 max-w-3xl">
+            A Klaviyo welcome series for a vintage apparel brand, built around
+            timeless storytelling and soft-conversion strategy.
+          </p>
+        </div>
+      </section>
+
+      <!-- Project Explanation & Highlights -->
+      <section class="pt-0 pb-16">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <!-- Left: Project Explanation -->
+            <div>
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Project Overview
+              </h2>
+              <div class="space-y-4 text-zinc-600 leading-relaxed">
+                <p class="text-justify">
+                  This project focused on designing and writing a 4-email
+                  welcome series for a vintage dresses and accessories brand.
+                  The goal was to create a strong first impression for new
+                  subscribers while staying true to the brand’s timeless,
+                  romantic aesthetic.
+                </p>
+                <p class="text-justify">
+                  The emails were built to welcome new users, communicate brand
+                  values, showcase best-selling products, and gently encourage a
+                  first purchase through a soft discount strategy.
+                </p>
+                <h6 class="mt-4 text-xl font-semibold">The Challenge</h6>
+                <p class="text-justify">
+                  The brand needed a welcome flow that could:
+                </p>
+                <ul class="list-disc">
+                  <li class="ml-8">
+                    Introduce the brand without feeling overly promotional
+                  </li>
+                  <li class="ml-8">
+                    Reflect the emotional and nostalgic appeal of vintage
+                    fashion
+                  </li>
+                  <li class="ml-8">
+                    Build trust with new subscribers unfamiliar with the brand
+                  </li>
+                  <li class="ml-8">
+                    Convert first-time subscribers without aggressive sales
+                    tactics
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Right: Highlights -->
+            <div>
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Key Strategy
+              </h2>
+              <p>
+                I approached this project with a story-first, conversion-second
+                mindset.
+                <br />
+                The strategy was to:
+              </p>
+              <ul class="space-y-4 mt-3">
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Lead with emotion and atmosphere rather than discounts
+                    </h3>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Position the brand as a curator of meaningful, timeless
+                      pieces
+                    </h3>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Use soft language and elegant pacing to match the vintage
+                      tone
+                    </h3>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Introduce urgency gently, framing discounts as a “welcome
+                      gift”
+                    </h3>
+                  </div>
+                </li>
+              </ul>
+              <p class="mt-3">
+                Each email in the sequence serves a clear role while maintaining
+                a consistent voice and visual rhythm.
+              </p>
+
+              <h6 class="font-semibold mt-4 mb-2">Overall Flow Rationale:</h6>
+              <p class="text-justify">
+                The welcome sequence was intentionally structured to move from
+                <span class="font-semibold">emotion</span> →
+                <span class="font-semibold">trust</span> →
+                <span class="font-semibold">guidance</span> →
+                <span class="font-semibold">action</span>, mirroring how vintage
+                customers typically shop.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Full Width YouTube Video -->
+      <!-- <section class="py-8">
+        <div class="w-full">
+          <div class="relative aspect-video w-full bg-zinc-100">
+            <iframe
+              class="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/MqTKiYGtOjo"
+              title="Nexus Newsletter Case Study Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </section> -->
+
+      <!-- Welcome Email Section -->
+      <section class="py-16 sm:py-24">
+        <h2 class="text-6xl mb-16 text-center px-6">Welcome Emails</h2>
+        <div class="mx-auto max-w-7xl px-6">
+          <!-- Email 1: Image Left, Details Right -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16"
+          >
+            <div>
+              <div
+                class="lg:overflow-y-auto rounded-lg border border-zinc-200 bg-white lg:max-h-[700px]"
+              >
+                <img
+                  src="../../img/welcome_email_1.png"
+                  alt="Welcome Email 1 - Brand Introduction"
+                  class="w-full h-auto"
+                />
+              </div>
+              <!-- Scroll indicator -->
+              <div
+                class="hidden lg:flex items-center justify-end gap-1 mt-2 text-xs text-zinc-400"
+              >
+                <i data-lucide="mouse" class="h-3 w-3"></i>
+                <span>Scroll to view</span>
+              </div>
+            </div>
+            <div>
+              <span
+                class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-4"
+                >Email 1</span
+              >
+              <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+                Welcome + Gift
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                <span class="font-semibold">Objective:</span> First impression,
+                brand positioning, and incentive framing
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                This email was designed to act as the brand’s first handshake
+                with a new subscriber. Rather than leading aggressively with a
+                discount, the focus was on establishing a sense of warmth,
+                intention, and timelessness — values central to a vintage
+                apparel brand.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                The welcome gift is deliberately framed as a thoughtful gesture,
+                not a promotion. Language such as “welcome gift” and “something
+                special” helps maintain the emotional tone while still
+                encouraging an early purchase.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                This email introduces the brand’s core promise: curated,
+                enduring pieces chosen for character and craftsmanship. The
+                call-to-action is intentionally simple and inviting, guiding the
+                subscriber toward exploration rather than pushing for an
+                immediate decision.
+              </p>
+              <h6 class="font-semibold">Why this matters:</h6>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                A strong, emotionally aligned first email sets expectations for
+                the entire customer relationship and increases trust before any
+                transactional messaging.
+              </p>
+              <h5 class="text-lg font-semibold mb-4 mt-6">Highlights</h5>
+              <ul class="space-y-2 text-zinc-600">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Brand story introduction</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Welcome discount teaser</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Soft CTA to explore collections</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Email 2: Details Left, Image Right -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16"
+          >
+            <div class="order-2 lg:order-1">
+              <span
+                class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-4"
+                >Email 2</span
+              >
+              <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+                Brand Story
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                <span class="font-semibold">Objective:</span> Emotional
+                connection, differentiation, and trust-building
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                The second email shifts focus away from selling and toward
+                storytelling and brand philosophy. Its purpose is to help the
+                subscriber understand why the brand exists and what makes it
+                different in a market saturated with fast fashion.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                This email leans heavily into nostalgia, intention, and
+                craftsmanship — values that resonate deeply with vintage-focused
+                audiences. Short, reflective sentences are used to slow the
+                reading pace and mirror the brand’s belief in slowing down
+                fashion consumption.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                Rather than listing features, the copy highlights beliefs and
+                values, positioning the brand as a curator of meaningful pieces
+                rather than a trend-driven retailer.
+              </p>
+              <h6 class="font-semibold">Why this matters:</h6>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                Customers who emotionally connect with a brand are more likely
+                to convert, remain loyal, and perceive products as higher value.
+              </p>
+              <h5 class="text-lg font-semibold mb-4 mt-6">Highlights</h5>
+              <ul class="space-y-2 text-zinc-600">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Craftsmanship & quality focus</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Sustainability messaging</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Behind-the-scenes storytelling</span>
+                </li>
+              </ul>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div
+                class="lg:overflow-y-auto rounded-lg border border-zinc-200 bg-white lg:max-h-[700px]"
+              >
+                <img
+                  src="../../img/welcome_email_2.png"
+                  alt="Welcome Email 2 - Brand Values"
+                  class="w-full h-auto"
+                />
+              </div>
+              <!-- Scroll indicator -->
+              <div
+                class="hidden lg:flex items-center justify-end gap-1 mt-2 text-xs text-zinc-400"
+              >
+                <i data-lucide="mouse" class="h-3 w-3"></i>
+                <span>Scroll to view</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email 3: Image Left, Details Right -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-16"
+          >
+            <div>
+              <div
+                class="lg:overflow-y-auto rounded-lg border border-zinc-200 bg-white lg:max-h-[700px]"
+              >
+                <img
+                  src="../../img/welcome_email_3.png"
+                  alt="Welcome Email 3 - Best Sellers"
+                  class="w-full h-auto"
+                />
+              </div>
+              <!-- Scroll indicator -->
+              <div
+                class="hidden lg:flex items-center justify-end gap-1 mt-2 text-xs text-zinc-400"
+              >
+                <i data-lucide="mouse" class="h-3 w-3"></i>
+                <span>Scroll to view</span>
+              </div>
+            </div>
+            <div>
+              <span
+                class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-4"
+                >Email 3</span
+              >
+              <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+                Best Sellers
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                <span class="font-semibold">Objective:</span> Social proof,
+                guided discovery, and confidence-building
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                This email is designed to reduce decision fatigue by guiding new
+                subscribers toward proven favorites. Instead of overwhelming the
+                reader with the full catalog, it highlights a small selection of
+                customer-loved pieces, reinforcing trust through social
+                validation.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                Product descriptions focus on feeling and longevity rather than
+                technical specifications, aligning with the emotional
+                motivations of vintage shoppers. Limited quantity language
+                subtly reinforces exclusivity without introducing pressure.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                The reminder of the welcome gift is placed naturally within the
+                flow, ensuring the incentive supports the decision rather than
+                dominating it.
+              </p>
+              <h6 class="font-semibold">Why this matters:</h6>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                Showing what others love helps hesitant buyers feel confident
+                and reassured, especially when shopping from a brand they’re new
+                to.
+              </p>
+              <h5 class="text-lg font-semibold mb-4 mt-6">Highlights</h5>
+              <ul class="space-y-2 text-zinc-600">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Curated product showcase</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Customer favorites & reviews</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Direct links to shop</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Email 4: Details Left, Image Right -->
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start"
+          >
+            <div class="order-2 lg:order-1">
+              <span
+                class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-4"
+                >Email 4</span
+              >
+              <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mb-4">
+                Gentle Reminder
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                <span class="font-semibold">Objective:</span> Conversion through
+                soft urgency
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                The final email introduces urgency while preserving the brand’s
+                calm, elegant tone. Instead of aggressive countdown language,
+                urgency is framed gently, respecting the thoughtful nature of
+                the audience.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                This email acknowledges hesitation and reframes the decision as
+                a personal moment — choosing a piece that “felt right” rather
+                than making a rushed purchase. The copy reinforces the idea that
+                these items are meaningful additions to a wardrobe, not impulse
+                buys.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                The call-to-action is clear but understated, ensuring the email
+                feels like a reminder rather than a push.
+              </p>
+              <h6 class="font-semibold">Why this matters:</h6>
+              <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+                Urgency drives action, but tone consistency ensures the brand
+                doesn’t break trust at the most critical conversion point.
+              </p>
+              <h5 class="text-lg font-semibold mb-4 mt-6">Highlights</h5>
+              <ul class="space-y-2 text-zinc-600">
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Welcome discount reminder</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Soft urgency messaging</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i
+                    data-lucide="check"
+                    class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <span>Clear call-to-action to purchase</span>
+                </li>
+              </ul>
+            </div>
+            <div class="order-1 lg:order-2">
+              <div
+                class="lg:overflow-y-auto rounded-lg border border-zinc-200 bg-white lg:max-h-[700px]"
+              >
+                <img
+                  src="../../img/welcome_email_4.png"
+                  alt="Welcome Email 4 - Discount Reminder"
+                  class="w-full h-auto"
+                />
+              </div>
+              <!-- Scroll indicator -->
+              <div
+                class="hidden lg:flex items-center justify-end gap-1 mt-2 text-xs text-zinc-400"
+              >
+                <i data-lucide="mouse" class="h-3 w-3"></i>
+                <span>Scroll to view</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creating the Flow Trigger Section -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start"
+          >
+            <!-- Left: Content -->
+            <div class="lg:col-span-2">
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Creating the Flow Trigger
+              </h2>
+              <div class="space-y-4 text-zinc-600 leading-relaxed">
+                <p class="text-justify">
+                  The welcome series begins the moment a visitor subscribes
+                  through the on-site signup form. In Klaviyo, this trigger is
+                  configured to activate immediately upon form submission,
+                  ensuring every new subscriber receives a timely and consistent
+                  brand introduction.
+                </p>
+                <p class="text-justify">
+                  The form itself was designed to capture essential information
+                  while keeping friction low — just an email address in exchange
+                  for a
+                  <span class="font-semibold text-zinc-900"
+                    >20% welcome discount</span
+                  >. This simplicity encourages higher conversion rates while
+                  still enabling personalization in the welcome emails.
+                </p>
+                <p class="text-justify">
+                  By connecting the form directly to the welcome flow, we ensure
+                  no subscriber falls through the cracks. The automation handles
+                  timing, sequencing, and delivery, allowing the brand to focus
+                  on what matters most: building genuine relationships with new
+                  customers.
+                </p>
+              </div>
+            </div>
+            <!-- Right: Image -->
+            <div class="lg:col-span-3">
+              <div
+                class="rounded-lg border border-zinc-200 bg-white overflow-hidden h-[500px]"
+              >
+                <img
+                  src="../../img/klaviyo-form.png"
+                  alt="Klaviyo signup form configuration"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Creating the Flow Automation Section -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start"
+          >
+            <!-- Left: Content -->
+            <div class="lg:col-span-3">
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Creating the Flow Automation
+              </h2>
+              <div class="space-y-4 text-zinc-600 leading-relaxed">
+                <p class="text-justify">
+                  The welcome flow was built in Klaviyo with careful attention
+                  to timing and sequencing. Each email is spaced to maintain
+                  engagement without overwhelming new subscribers.
+                </p>
+                <p class="text-justify">
+                  The automation handles the entire journey — from the moment
+                  someone subscribes to delivering the final conversion-focused
+                  email. Time delays between emails were calibrated to create a
+                  natural rhythm that guides subscribers from introduction to
+                  purchase.
+                </p>
+                <p class="text-justify">
+                  This hands-off approach allows the brand to nurture thousands
+                  of new relationships simultaneously, while maintaining a
+                  personal and intentional tone throughout.
+                </p>
+                <h6 class="font-semibold mt-4 italic">
+                  Filtering & Segmentation:
+                </h6>
+                <p class="text-justify">
+                  Importantly, emails following the first welcome message are
+                  filtered to only reach subscribers who
+                  <span class="font-semibold text-zinc-900"
+                    >haven't yet placed an order</span
+                  >. This prevents unnecessary follow-ups and ensures the
+                  sequence remains relevant to each recipient's journey.
+                </p>
+                <p class="text-justify">
+                  At the end of the flow, a custom property named
+                  <span class="font-semibold text-zinc-900"
+                    >"_Completed_Welcome_Series"</span
+                  >
+                  is set to true. This allows us to segment subscribers for
+                  further relevant actions based on whether the welcome flow
+                  converted them or not.
+                </p>
+              </div>
+              <!-- Filter Image -->
+              <div
+                class="mt-6 rounded-lg border border-zinc-200 bg-white overflow-hidden"
+              >
+                <img
+                  src="../../img/klaviyo-email-filter.png"
+                  alt="Klaviyo email filter configuration"
+                  class="w-full h-auto"
+                />
+              </div>
+            </div>
+            <!-- Right: Image -->
+            <div class="lg:col-span-2">
+              <div
+                class="lg:overflow-y-auto rounded-lg border border-zinc-200 bg-white lg:max-h-[1500px]"
+              >
+                <img
+                  src="../../img/klaviyo-welcome-flow.png"
+                  alt="Klaviyo Welcome Flow Automation"
+                  class="w-full h-auto max-w-[500px] mx-auto"
+                />
+              </div>
+              <!-- Scroll indicator -->
+              <div
+                class="hidden lg:flex items-center justify-end gap-1 mt-2 text-xs text-zinc-400"
+              >
+                <i data-lucide="mouse" class="h-3 w-3"></i>
+                <span>Scroll to view</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back to Portfolio -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex items-center justify-center">
+            <a
+              href="../../index.html#case-studies"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-6 py-3 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition"
+            >
+              <i data-lucide="arrow-left" class="h-4 w-4"></i>
+              <span>Back to home</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="border-t border-zinc-200 bg-zinc-50">
+      <div class="mx-auto max-w-7xl px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div>
+            <div
+              class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900 text-sm font-medium tracking-tight"
+            >
+              AD
+            </div>
+            <p class="mt-4 text-sm text-zinc-600 max-w-xs">
+              Portfolio of Amul Dahal. Building elegant products with precision
+              and care.
+            </p>
+            <div class="mt-4 flex items-center gap-3">
+              <a
+                href="https://www.github.com/amdl89"
+                target="_blank"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900"
+              >
+                <i data-lucide="github" class="h-5 w-5"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/amul-dahal-56a5962a4"
+                target="_blank"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900"
+              >
+                <i data-lucide="linkedin" class="h-5 w-5"></i>
+              </a>
+              <a
+                href="mailto:amuldahal89@gmail.com"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900"
+              >
+                <i data-lucide="mail" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-base font-semibold tracking-tight">Links</h4>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-600">
+              <li>
+                <a href="../../index.html#projects" class="hover:text-zinc-900"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a href="../../index.html#about" class="hover:text-zinc-900"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="../../index.html#skills" class="hover:text-zinc-900"
+                  >Skills</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-base font-semibold tracking-tight">Get in touch</h4>
+            <p class="mt-4 text-sm text-zinc-600">
+              Open to collaborations, speaking, and freelance engagements.
+            </p>
+            <a
+              href="mailto:amuldahal89@gmail.com"
+              class="mt-4 inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2.5 text-white text-sm font-medium tracking-tight hover:bg-black transition"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Email amuldahal89@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 flex items-center justify-between border-t border-zinc-200 pt-6 text-xs text-zinc-500"
+        >
+          <span>© <span id="year"></span> Amul Dahal</span>
+          <span>Crafted with intention.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+      // Lucide icons and video speed
+      window.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+
+        // Set video playback speed to 0.5
+        document.querySelectorAll("video").forEach((video) => {
+          video.playbackRate = 0.5;
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileBtn?.addEventListener("click", () => {
+        const open = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        mobileBtn.innerHTML = open
+          ? '<i data-lucide="x" class="h-5 w-5"></i>'
+          : '<i data-lucide="menu" class="h-5 w-5"></i>';
+        lucide.createIcons();
+      });
+
+      // Close mobile menu on nav click
+      mobileMenu?.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+            mobileBtn.innerHTML = '<i data-lucide="menu" class="h-5 w-5"></i>';
+            lucide.createIcons();
+          }
+        });
+      });
+
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      /**
+       * Smooth scrolling for anchor links in header and footer
+       * Accounts for sticky header height to prevent content from being hidden
+       */
+      function smoothScrollToAnchor(e) {
+        // Only handle anchor links (links starting with #)
+        const href = e.currentTarget.getAttribute("href");
+        if (!href || !href.startsWith("#")) return;
+
+        // For links to index.html with hash, navigate to index.html first
+        if (href.includes("index.html#")) {
+          return; // Let browser handle navigation
+        }
+
+        // Get the target element
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (!targetElement) return;
+
+        // Prevent default anchor behavior
+        e.preventDefault();
+
+        // Get the sticky header height
+        const header = document.querySelector("header");
+        const headerHeight = header ? header.offsetHeight : 0;
+
+        // Calculate the target position, accounting for header height
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+
+        // Smooth scroll to the calculated position
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+
+      // Apply smooth scrolling to all anchor links in header and footer
+      window.addEventListener("DOMContentLoaded", () => {
+        document
+          .querySelectorAll('header a[href^="#"], footer a[href^="#"]')
+          .forEach((link) => {
+            link.addEventListener("click", smoothScrollToAnchor);
+          });
+      });
+    </script>
+  </body>
+</html>

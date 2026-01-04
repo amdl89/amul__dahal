@@ -834,6 +834,80 @@
         </div>
       </section>
 
+      <!-- Case Studies -->
+      <section id="case-studies" class="py-16 sm:py-24 bg-zinc-50">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex items-end justify-between">
+            <h2
+              class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight"
+            >
+              Case Study
+            </h2>
+          </div>
+
+          <div class="mt-10 space-y-16">
+            <!-- Case Study 1 -->
+            <article class="group">
+              <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                <a
+                  href="case-study/email-campaign"
+                  class="relative overflow-hidden rounded-md border border-zinc-200 block"
+                  onclick="posthog?.capture('case_study_clicked', {case_study_name: 'Flow Builder', click_type: 'image'});"
+                >
+                  <img
+                    src="../../img/welcome-emails-gap-transparent.png"
+                    alt="Flow Builder case study"
+                    class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.02] bg-gray-200"
+                  />
+                </a>
+                <div>
+                  <div class="flex items-center gap-2 mb-4">
+                    <span
+                      class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+                      >Marketing Automation</span
+                    >
+                    <span
+                      class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+                      >Email Campaigns</span
+                    >
+                  </div>
+                  <h3
+                    class="text-2xl sm:text-3xl font-semibold tracking-tight mb-3"
+                  >
+                    Building a Timeless First Impression for a Vintage Apparel
+                    Brand
+                  </h3>
+                  <p class="text-zinc-600 leading-relaxed mb-4">
+                    Designed and implemented a 4-part welcome email series for a
+                    vintage dresses and accessories brand using
+                    <em>Klaviyo</em>, focused on creating an emotional first
+                    impression, communicating brand values, and converting
+                    first-time subscribers into customers.
+                  </p>
+                  <p class="text-zinc-600 leading-relaxed mb-6">
+                    The sequence balances storytelling with gentle conversion,
+                    aligning with the brand’s timeless aesthetic while guiding
+                    new subscribers toward their first purchase.
+                  </p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <a
+                      href="case-study/email-campaign"
+                      class="inline-flex items-center gap-2 text-sm font-medium text-zinc-900 hover:opacity-80"
+                      onclick="posthog?.capture('case_study_clicked', {case_study_name: 'Flow Builder', click_type: 'button'});"
+                    >
+                      <span>Read Full Case Study</span>
+                      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- Footer / Contact -->
       <footer id="contact" class="border-t border-zinc-200 bg-zinc-50">
         <div class="mx-auto max-w-7xl px-6 py-12">
