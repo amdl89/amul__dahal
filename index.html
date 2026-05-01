@@ -859,7 +859,7 @@
             <h2
               class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight"
             >
-              Case Study
+              Case Studies
             </h2>
           </div>
 
@@ -921,6 +921,127 @@
                       onclick="
                         posthog?.capture('case_study_clicked', {
                           case_study_name: 'Flow Builder',
+                          click_type: 'button',
+                        })
+                      "
+                    >
+                      <span>Read Full Case Study</span>
+                      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Case Study 2 -->
+            <article class="group">
+              <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+              >
+                <a
+                  href="case-study/tiered-product-sale"
+                  class="relative overflow-hidden rounded-md border border-zinc-200 block bg-zinc-900"
+                  onclick="
+                    posthog?.capture('case_study_clicked', {
+                      case_study_name: 'Tiered Product Sale',
+                      click_type: 'image',
+                    })
+                  "
+                >
+                  <div
+                    class="aspect-[16/10] w-full p-8 sm:p-12 flex flex-col justify-between text-white transition duration-500 group-hover:scale-[1.02]"
+                    style="
+                      background-image:
+                        radial-gradient(
+                          circle at 20% 20%,
+                          rgba(34, 211, 238, 0.18),
+                          transparent 45%
+                        ),
+                        radial-gradient(
+                          circle at 80% 80%,
+                          rgba(244, 114, 182, 0.18),
+                          transparent 45%
+                        );
+                      background-color: #0b0d12;
+                    "
+                  >
+                    <div class="flex items-center gap-2">
+                      <span
+                        class="inline-flex rounded-full bg-white/10 text-white text-[11px] font-medium px-2.5 py-1 backdrop-blur"
+                        >Shopify Flow</span
+                      >
+                      <span
+                        class="inline-flex rounded-full bg-white/10 text-white text-[11px] font-medium px-2.5 py-1 backdrop-blur"
+                        >Admin GraphQL API</span
+                      >
+                    </div>
+                    <div class="space-y-3">
+                      <div
+                        class="flex items-center justify-between rounded-md bg-emerald-500/10 border border-emerald-400/30 px-3 py-2 text-sm"
+                      >
+                        <span class="font-medium">Round 1 · Default</span>
+                        <span class="font-mono text-emerald-300"
+                          >$20 · 100 units</span
+                        >
+                      </div>
+                      <div
+                        class="flex items-center justify-between rounded-md bg-amber-500/10 border border-amber-400/30 px-3 py-2 text-sm"
+                      >
+                        <span class="font-medium">Round 2</span>
+                        <span class="font-mono text-amber-300"
+                          >$30 · 75 units</span
+                        >
+                      </div>
+                      <div
+                        class="flex items-center justify-between rounded-md bg-rose-500/10 border border-rose-400/30 px-3 py-2 text-sm"
+                      >
+                        <span class="font-medium">Round 3</span>
+                        <span class="font-mono text-rose-300"
+                          >$40 · 50 units</span
+                        >
+                      </div>
+                    </div>
+                    <div class="text-xs text-white/60 font-mono">
+                      trigger · variant_out_of_stock_updated
+                    </div>
+                  </div>
+                </a>
+                <div>
+                  <div class="flex items-center gap-2 mb-4 flex-wrap">
+                    <span
+                      class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+                      >Shopify Automation</span
+                    >
+                    <span
+                      class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+                      >Admin GraphQL API</span
+                    >
+                  </div>
+                  <h3
+                    class="text-2xl sm:text-3xl font-semibold tracking-tight mb-3"
+                  >
+                    Automating a Tiered Product Sale with Shopify Flow
+                  </h3>
+                  <p class="text-zinc-600 leading-relaxed mb-4">
+                    Built a self-running multi-round pricing engine that
+                    promotes the next tier the moment the current one sells out
+                    — using the <em>Shopify Flow App</em>, the
+                    <em>Admin GraphQL API</em> and variant metafields as the
+                    state ledger.
+                  </p>
+                  <p class="text-zinc-600 leading-relaxed mb-6">
+                    Each transition fires the moment a tier sells out — turning
+                    every sell-out into urgency, lifting average selling price
+                    as scarcity builds, and clearing every round without
+                    deadstock.
+                  </p>
+                  <div class="flex flex-wrap items-center gap-4">
+                    <a
+                      href="case-study/tiered-product-sale"
+                      class="inline-flex items-center gap-2 text-sm font-medium text-zinc-900 hover:opacity-80"
+                      onclick="
+                        posthog?.capture('case_study_clicked', {
+                          case_study_name: 'Tiered Product Sale',
                           click_type: 'button',
                         })
                       "

@@ -1,0 +1,1079 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <title>Tiered Product Sale with Shopify Flow | Amul Dahal Portfolio</title>
+    <meta
+      name="title"
+      content="Tiered Product Sale with Shopify Flow | Amul Dahal Portfolio"
+    />
+    <meta
+      name="description"
+      content="Case study of a tiered product sale automation built with Shopify Flow — using variant metafields and the Admin GraphQL API to advance pricing rounds the moment each one sells out."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon  Icons -->
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.ico" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <!-- Inter font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- JetBrains Mono for code blocks -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../../css/main.css" />
+
+    <!-- PostHog Analytics -->
+    <script>
+      !(function (t, e) {
+        var o, n, p, r;
+        e.__SV ||
+          ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split(".");
+              (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                }));
+            }
+            (((p = t.createElement("script")).type = "text/javascript"),
+              (p.async = !0),
+              (p.src = s.api_host + "/static/array.js"),
+              (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                p,
+                r,
+              ));
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                u.people = u.people || [],
+                u.toString = function (t) {
+                  var e = "posthog";
+                  return (
+                    "posthog" !== a && (e += "." + a),
+                    t || (e += " (stub)"),
+                    e
+                  );
+                },
+                u.people.toString = function () {
+                  return u.toString(1) + ".people (stub)";
+                },
+                o =
+                  "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(
+                    " ",
+                  ),
+                n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+      })(document, window.posthog || []);
+      posthog.init("phc_BiwcC3FSLQuXkbSwS9zt6nUbE0WG9lW9wtVhsfpZhgx", {
+        api_host: "https://us.i.posthog.com",
+        loaded: function (posthog) {
+          posthog.capture("$pageview", {
+            page_title: document.title,
+            page_url: window.location.href,
+            page_type: "case_study",
+            case_study_name: "Tiered Product Sale",
+          });
+        },
+      });
+    </script>
+
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family:
+          "Inter",
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+      }
+      pre,
+      code {
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+          Consolas, monospace;
+      }
+      .code-block {
+        background: #0b0d12;
+        color: #e4e6eb;
+        border-radius: 0.5rem;
+        padding: 1.25rem;
+        overflow-x: auto;
+        font-size: 0.8125rem;
+        line-height: 1.6;
+        border: 1px solid #1f2937;
+      }
+      .code-block .tok-comment {
+        color: #6b7280;
+        font-style: italic;
+      }
+      .code-block .tok-key {
+        color: #9cdcfe;
+      }
+      .code-block .tok-str {
+        color: #ce9178;
+      }
+      .code-block .tok-num {
+        color: #b5cea8;
+      }
+      .code-block .tok-tag {
+        color: #c586c0;
+      }
+      .code-block .tok-fn {
+        color: #dcdcaa;
+      }
+      .code-block .tok-var {
+        color: #4fc1ff;
+      }
+
+      .flow-node {
+        border: 1px solid #d4d4d8;
+        background: #fff;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.8125rem;
+        line-height: 1.4;
+        text-align: center;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .flow-node.trigger {
+        background: #ecfeff;
+        border-color: #67e8f9;
+        color: #155e75;
+      }
+      .flow-node.condition {
+        background: #fefce8;
+        border-color: #fde047;
+        color: #713f12;
+      }
+      .flow-node.action {
+        background: #f0fdf4;
+        border-color: #86efac;
+        color: #14532d;
+      }
+      .flow-node.terminal {
+        background: #fef2f2;
+        border-color: #fca5a5;
+        color: #7f1d1d;
+      }
+      .flow-arrow {
+        width: 2px;
+        background: #a1a1aa;
+        margin: 0 auto;
+        position: relative;
+      }
+      .flow-arrow::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 6px solid #a1a1aa;
+      }
+      .flow-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #71717a;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-zinc-900 antialiased">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b border-zinc-200"
+    >
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex items-center justify-between py-4">
+          <div class="flex items-center gap-8">
+            <a href="../../index.html" class="inline-flex items-center gap-2">
+              <span
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900 text-sm font-medium tracking-tight"
+                >AD</span
+              >
+            </a>
+            <nav
+              class="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-700"
+            >
+              <a
+                href="../../index.html#projects"
+                class="hover:text-zinc-900 transition"
+                >Portfolio</a
+              >
+              <a
+                href="../../index.html#about"
+                class="hover:text-zinc-900 transition"
+                >My Story</a
+              >
+            </nav>
+          </div>
+
+          <div class="hidden md:flex items-center gap-4">
+            <a
+              href="mailto:amuldahal89@gmail.com"
+              class="text-xs font-medium text-zinc-600 tracking-tight hover:text-zinc-900 transition"
+              >AMULDAHAL89@GMAIL.COM</a
+            >
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Let's Connect</span>
+            </a>
+          </div>
+
+          <div class="md:hidden flex items-center gap-2">
+            <button
+              id="mobileMenuBtn"
+              aria-label="Open menu"
+              class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900"
+            >
+              <i data-lucide="menu" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden border-t border-zinc-200 pb-4">
+          <nav
+            class="flex flex-col gap-3 pt-4 text-sm font-medium text-zinc-700"
+          >
+            <a
+              href="../../index.html#projects"
+              class="hover:text-zinc-900 transition"
+              >Portfolio</a
+            >
+            <a
+              href="../../index.html#about"
+              class="hover:text-zinc-900 transition"
+              >My Story</a
+            >
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition w-max"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Let's Connect</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Title -->
+      <section class="pt-16 pb-8 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex items-center gap-2 mb-6 flex-wrap">
+            <span
+              class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+              >Shopify Flow</span
+            >
+            <span
+              class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+              >Admin GraphQL API</span
+            >
+            <span
+              class="inline-flex rounded-full bg-zinc-100 text-zinc-700 text-xs font-medium px-2.5 py-1"
+              >Automation</span
+            >
+          </div>
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight"
+          >
+            Automating a Tiered Product Sale with Shopify Flow
+          </h1>
+          <p class="mt-6 text-lg text-zinc-600 max-w-3xl">
+            A self-running pricing engine that advances to the next tier the
+            moment the current one sells out — turning every sell-out into
+            urgency, lifting average selling price as scarcity builds, and
+            clearing every round without deadstock.
+          </p>
+        </div>
+      </section>
+
+      <!-- Project Overview & Strategy -->
+      <section class="pt-0 pb-16">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <div>
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Project Overview
+              </h2>
+              <div class="space-y-4 text-zinc-600 leading-relaxed">
+                <p class="text-justify">
+                  This project automates a tiered product sale on a Shopify
+                  store. Each variant is released across multiple
+                  <span class="font-semibold text-zinc-900">rounds</span> —
+                  Round 1 is the original price and inventory, and each
+                  subsequent round redefines both. When a round sells out, the
+                  next round activates automatically: price changes, stock is
+                  replenished, and the storefront keeps moving.
+                </p>
+                <p class="text-justify">
+                  The transition is event-driven. The Shopify Flow
+                  <em>"variant out of stock"</em> trigger fires the moment
+                  inventory hits zero, eliminating timer-based releases and the
+                  operational overhead of merchants pricing rounds manually.
+                </p>
+                <h6 class="mt-4 text-xl font-semibold">The Challenge</h6>
+                <ul class="list-disc">
+                  <li class="ml-8">
+                    Advance through rounds without human intervention
+                  </li>
+                  <li class="ml-8">
+                    Update price <em>and</em> stock together — Shopify keeps
+                    them in different domains
+                  </li>
+                  <li class="ml-8">
+                    Stay safe under the Admin API's idempotency rules so a retry
+                    never double-adjusts inventory
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                Key Strategy
+              </h2>
+              <p class="text-zinc-600 leading-relaxed">
+                Treat each round as a piece of state stored on the variant
+                itself, then let the flow read that state at trigger-time and
+                act on whichever tier comes next.
+              </p>
+              <ul class="space-y-4 mt-4">
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      State on the variant, not in the flow
+                    </h3>
+                    <p class="text-sm text-zinc-600">
+                      Round prices and quantities live in variant metafields.
+                      The flow stays stateless and idempotent.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Event-driven transitions
+                    </h3>
+                    <p class="text-sm text-zinc-600">
+                      <code>variant_out_of_stock_updated</code> fires precisely
+                      when a tier is exhausted — no polling, no timers.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    data-lucide="check-circle"
+                    class="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5"
+                  ></i>
+                  <div>
+                    <h3 class="font-semibold text-zinc-900 mb-1">
+                      Two-call sequencing for atomicity
+                    </h3>
+                    <p class="text-sm text-zinc-600">
+                      Price (variant) is set <em>before</em> stock (inventory
+                      level), so customers never see new stock at the old price.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What is a Tiered Product Sale -->
+      <section class="py-16 sm:py-24 bg-zinc-50 border-y border-zinc-200">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+            <div class="lg:col-span-3">
+              <h2
+                class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6"
+              >
+                What is a Tiered Product Sale?
+              </h2>
+              <div class="space-y-4 text-zinc-600 leading-relaxed">
+                <p class="text-justify">
+                  A tiered (or "round-based") product sale releases a SKU across
+                  a sequence of pricing windows. Each round has its own price
+                  and its own quantity. The earliest round usually carries the
+                  lowest price and the largest pool of stock; successive rounds
+                  raise the price as supply tightens.
+                </p>
+                <p class="text-justify">
+                  The mechanic does three commercial jobs at once:
+                </p>
+                <ul class="list-disc text-justify">
+                  <li class="ml-8 mb-2">
+                    <span class="font-semibold text-zinc-900"
+                      >Captures the price-sensitive segment first.</span
+                    >
+                    The cheapest tier converts customers who would otherwise
+                    stay on the fence.
+                  </li>
+                  <li class="ml-8 mb-2">
+                    <span class="font-semibold text-zinc-900"
+                      >Lifts average selling price (ASP).</span
+                    >
+                    Later rounds harvest demand at higher margins from customers
+                    who were waiting to see if the product was "for them."
+                  </li>
+                  <li class="ml-8 mb-2">
+                    <span class="font-semibold text-zinc-900"
+                      >Generates recurring engagement events.</span
+                    >
+                    Each tier transition becomes a moment for email, SMS, or
+                    push: <em>"Round 2 is live — at $30 instead of $20."</em>
+                  </li>
+                </ul>
+                <p class="text-justify">
+                  The strategy aligns with how customers already behave.
+                  According to a 2024 YouGov survey
+                  <a
+                    href="https://www.shopify.com/blog/limited-drops"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="italic underline decoration-zinc-300 underline-offset-2 hover:decoration-zinc-700"
+                    >cited by Shopify</a
+                  >, 31&nbsp;% of consumers across 17 international markets
+                  say they're more likely to buy clothes, shoes, or
+                  accessories carrying a "limited-edition" label — and
+                  39&nbsp;% of Gen Z shoppers say the same, the strongest
+                  response of any age group.
+                </p>
+                <p class="text-justify">
+                  For inventory-constrained brands the operational benefit is
+                  just as important: pre-committing to sell each tier through
+                  before advancing eliminates deadstock risk and simplifies
+                  forecasting. The mechanic only works at scale if the
+                  transitions are automatic — which is what this flow exists to
+                  deliver.
+                </p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2">
+              <div
+                class="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm"
+              >
+                <h3 class="font-semibold tracking-tight mb-4 text-zinc-900">
+                  Example tier ladder
+                </h3>
+                <div class="space-y-3">
+                  <div
+                    class="flex items-center justify-between rounded-md bg-emerald-50 border border-emerald-200 px-4 py-3"
+                  >
+                    <div>
+                      <div
+                        class="text-xs font-semibold text-emerald-800 uppercase tracking-wide"
+                      >
+                        Round 1 · Default
+                      </div>
+                      <div class="text-sm text-zinc-700">100 units</div>
+                    </div>
+                    <div class="text-lg font-semibold text-emerald-900">
+                      $20
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center justify-between rounded-md bg-amber-50 border border-amber-200 px-4 py-3"
+                  >
+                    <div>
+                      <div
+                        class="text-xs font-semibold text-amber-800 uppercase tracking-wide"
+                      >
+                        Round 2
+                      </div>
+                      <div class="text-sm text-zinc-700">75 units</div>
+                    </div>
+                    <div class="text-lg font-semibold text-amber-900">$30</div>
+                  </div>
+                  <div
+                    class="flex items-center justify-between rounded-md bg-rose-50 border border-rose-200 px-4 py-3"
+                  >
+                    <div>
+                      <div
+                        class="text-xs font-semibold text-rose-800 uppercase tracking-wide"
+                      >
+                        Round 3
+                      </div>
+                      <div class="text-sm text-zinc-700">50 units</div>
+                    </div>
+                    <div class="text-lg font-semibold text-rose-900">$40</div>
+                  </div>
+                </div>
+                <p class="mt-5 text-xs text-zinc-500 leading-relaxed">
+                  Round 1 is the variant's default state — the price and
+                  inventory you'd already enter into Shopify. Subsequent rounds
+                  live in metafields and only activate when their predecessor
+                  sells out.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Model -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+            Data Model: State on the Variant
+          </h2>
+          <p class="text-zinc-600 leading-relaxed mb-8 max-w-3xl">
+            Each round's price and quantity is stored as a variant metafield in
+            the <code class="text-sm bg-zinc-100 px-1 rounded">variant</code>
+            namespace. Round 1 needs no metafields — it is the variant's default
+            state. Rounds 2+ are added as needed:
+          </p>
+
+          <div class="overflow-x-auto rounded-lg border border-zinc-200">
+            <table class="w-full text-sm">
+              <thead class="bg-zinc-50 text-zinc-700">
+                <tr>
+                  <th class="text-left px-4 py-3 font-semibold">
+                    Namespace.Key
+                  </th>
+                  <th class="text-left px-4 py-3 font-semibold">Type</th>
+                  <th class="text-left px-4 py-3 font-semibold">Purpose</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-200 text-zinc-700">
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs">
+                    variant.round_2_price
+                  </td>
+                  <td class="px-4 py-3">money</td>
+                  <td class="px-4 py-3">
+                    Price applied when Round 1 sells out
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs">
+                    variant.round_2_quantity
+                  </td>
+                  <td class="px-4 py-3">number_integer</td>
+                  <td class="px-4 py-3">
+                    Stock injected for Round 2 (positive delta)
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs">
+                    variant.round_3_price
+                  </td>
+                  <td class="px-4 py-3">money</td>
+                  <td class="px-4 py-3">
+                    Price applied when Round 2 sells out
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs">
+                    variant.round_3_quantity
+                  </td>
+                  <td class="px-4 py-3">number_integer</td>
+                  <td class="px-4 py-3">Stock injected for Round 3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-zinc-600 leading-relaxed mt-6 max-w-3xl">
+            The metafields double as the flow's state machine. After a tier
+            activates, its quantity metafield is reset to
+            <code class="text-sm bg-zinc-100 px-1 rounded">0</code>. The next
+            time the trigger fires, the condition for that tier evaluates false
+            and the flow advances to the next one. No external database, no
+            scheduled job — the variant <em>is</em> the ledger.
+          </p>
+        </div>
+      </section>
+
+      <!-- API Endpoints -->
+      <section class="py-16 sm:py-24 bg-zinc-50 border-y border-zinc-200">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+            Two Admin API Endpoints, Sequenced
+          </h2>
+          <p class="text-zinc-600 leading-relaxed mb-10 max-w-3xl">
+            Price and stock live in different parts of Shopify's data model.
+            <span class="font-semibold text-zinc-900">Price</span> is a field on
+            the
+            <code class="text-sm bg-zinc-200 px-1 rounded">ProductVariant</code
+            >; <span class="font-semibold text-zinc-900">stock</span> is a field
+            on an
+            <code class="text-sm bg-zinc-200 px-1 rounded">InventoryLevel</code>
+            (the join between an
+            <code class="text-sm bg-zinc-200 px-1 rounded">InventoryItem</code>
+            and a
+            <code class="text-sm bg-zinc-200 px-1 rounded">Location</code>). No
+            single mutation spans both, so each round transition makes two calls
+            in a fixed order.
+          </p>
+
+          <!-- Endpoint 1 -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div>
+              <span
+                class="inline-flex rounded-full bg-zinc-200 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-3"
+                >Step 1 of 2</span
+              >
+              <h3 class="text-xl font-semibold tracking-tight mb-3">
+                <code class="text-base">productVariantsBulkUpdate</code>
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-3">
+                Sets the variant's price for the active tier. Requires
+                <code class="text-sm bg-zinc-200 px-1 rounded"
+                  >write_products</code
+                >
+                scope.
+                <code class="text-sm bg-zinc-200 px-1 rounded">productId</code>
+                is a top-level argument because the mutation is bulk-scoped to a
+                single product.
+                <code class="text-sm bg-zinc-200 px-1 rounded">price</code> is a
+                decimal <em>string</em> (Shopify represents money as strings to
+                avoid float drift).
+              </p>
+              <p class="text-zinc-600 leading-relaxed">
+                Price-first ordering matters: if stock were injected before the
+                new price posted, customers browsing in the gap would see Round
+                2 inventory at the Round 1 price.
+              </p>
+            </div>
+            <div>
+              <pre
+                class="code-block"
+              ><code><span class="tok-comment"># Send Admin API request — body</span>
+{
+  <span class="tok-key">"productId"</span>: <span class="tok-str">"&#123;&#123;productVariant.product.id&#125;&#125;"</span>,
+  <span class="tok-key">"variants"</span>: [
+    {
+      <span class="tok-key">"id"</span>: <span class="tok-str">"&#123;&#123;productVariant.id&#125;&#125;"</span>,
+      <span class="tok-key">"price"</span>: <span class="tok-str">"&#123;&#123;productVariant.round2Price.value.amount&#125;&#125;"</span>
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Endpoint 2 -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <span
+                class="inline-flex rounded-full bg-zinc-200 text-zinc-700 text-xs font-medium px-2.5 py-1 mb-3"
+                >Step 2 of 2</span
+              >
+              <h3 class="text-xl font-semibold tracking-tight mb-3">
+                <code class="text-base">inventoryAdjustQuantities</code>
+              </h3>
+              <p class="text-zinc-600 leading-relaxed mb-3">
+                Adds the new tier's stock as a
+                <span class="font-semibold text-zinc-900">signed delta</span> —
+                the API never accepts an absolute quantity, only "add this many"
+                or "subtract this many." Because the trigger fires the instant
+                the variant hits zero, a positive delta equal to the tier's
+                quantity restocks the variant cleanly to that exact level.
+              </p>
+              <p class="text-zinc-600 leading-relaxed mb-3">
+                <code class="text-sm bg-zinc-200 px-1 rounded"
+                  >name: "available"</code
+                >
+                writes to the bucket customers actually see;
+                <code class="text-sm bg-zinc-200 px-1 rounded"
+                  >reason: "correction"</code
+                >
+                stamps the audit log with a recognizable cause; the
+                <code class="text-sm bg-zinc-200 px-1 rounded">locationId</code>
+                is required because one inventory item can have different stock
+                levels at different warehouses.
+              </p>
+            </div>
+            <div>
+              <pre
+                class="code-block"
+              ><code><span class="tok-comment"># Send Admin API request — body</span>
+{
+  <span class="tok-key">"input"</span>: {
+    <span class="tok-key">"reason"</span>: <span class="tok-str">"correction"</span>,
+    <span class="tok-key">"name"</span>: <span class="tok-str">"available"</span>,
+    <span class="tok-key">"changes"</span>: [
+      {
+        <span class="tok-key">"delta"</span>: &#123;&#123;productVariant.round2Quantity.value&#125;&#125;,
+        <span class="tok-key">"inventoryItemId"</span>: <span class="tok-str">"&#123;&#123;productVariant.inventoryItem.id&#125;&#125;"</span>,
+        <span class="tok-key">"locationId"</span>: <span class="tok-str">"gid://shopify/Location/&lt;your_location&gt;"</span>
+      }
+    ]
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div
+            class="mt-10 rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 leading-relaxed"
+          >
+            <div class="flex items-start gap-3">
+              <i data-lucide="info" class="h-5 w-5 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <span class="font-semibold">Idempotency note —</span>
+                as of API version 2026-04,
+                <code class="bg-amber-100 px-1 rounded"
+                  >inventoryAdjustQuantities</code
+                >
+                requires an idempotency key on retries to prevent duplicate
+                adjustments. Shopify Flow handles retry semantics internally,
+                but for custom apps calling the same endpoint you'll want to
+                derive a stable key from
+                <code class="bg-amber-100 px-1 rounded">variant.id</code> + tier
+                number + the round's start timestamp.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Building the Flow -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+            Building the Flow
+          </h2>
+          <p class="text-zinc-600 leading-relaxed mb-8 max-w-3xl">
+            The flow is built entirely in Shopify Flow's visual builder. The
+            <code class="text-sm bg-zinc-100 px-1 rounded"
+              >variant_out_of_stock_updated</code
+            >
+            trigger branches on which round still has stock to release, and each
+            branch carries its own price update, inventory adjustment, and
+            metafield reset.
+          </p>
+
+          <!-- Flow Diagram - Shopify Flow screenshot -->
+          <div class="rounded-xl p-6 sm:p-10 mb-6">
+            <div class="max-w-3xl mx-auto">
+              <img
+                src="../../img/flow_1.png"
+                alt="Shopify Flow canvas — three-round tiered sale workflow"
+                class="w-full h-auto rounded-md border border-zinc-200 bg-white"
+              />
+              <p
+                class="mt-6 text-xs text-zinc-500 text-center max-w-md mx-auto"
+              >
+                Each tier transition is a fresh trigger event. Zeroing the
+                tier's quantity metafield <em>after</em> the actions run is what
+                makes the next out-of-stock event fall through to the next
+                round.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-zinc-600 leading-relaxed mb-4 text-justify">
+            The branching tree reads naturally at three rounds: a condition
+            checks whether the next tier still has inventory to release, the
+            true branch runs the price-and-stock pair, and the false branch
+            falls through to the round after that. Because every action
+            references the variant's own metafields rather than a global
+            schedule, the workflow handles dozens of products in a single sale
+            concurrently without any per-variant configuration.
+          </p>
+        </div>
+      </section>
+
+      <!-- Outcomes -->
+      <section class="py-16 sm:py-24 bg-zinc-50 border-y border-zinc-200">
+        <div class="mx-auto max-w-7xl px-6">
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-6">
+            Outcomes & Takeaways
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="rounded-lg border border-zinc-200 bg-white p-6">
+              <i data-lucide="zap" class="h-6 w-6 text-emerald-600 mb-3"></i>
+              <h3 class="font-semibold text-zinc-900 mb-2">
+                Zero-touch tier transitions
+              </h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Every round opens the moment the previous one sells out — no
+                scheduled jobs, no merchant intervention, no risk of missed
+                timing.
+              </p>
+            </div>
+            <div class="rounded-lg border border-zinc-200 bg-white p-6">
+              <i data-lucide="layers" class="h-6 w-6 text-emerald-600 mb-3"></i>
+              <h3 class="font-semibold text-zinc-900 mb-2">
+                State on the variant
+              </h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Each round's price and inventory live in the variant's own
+                metafields, so the workflow handles dozens of products in a
+                single sale concurrently with no per-variant configuration.
+              </p>
+            </div>
+            <div class="rounded-lg border border-zinc-200 bg-white p-6">
+              <i
+                data-lucide="shield-check"
+                class="h-6 w-6 text-emerald-600 mb-3"
+              ></i>
+              <h3 class="font-semibold text-zinc-900 mb-2">Safe sequencing</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Price is updated before stock is injected, so a customer
+                browsing during the transition never sees fresh inventory at
+                last round's price.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-10 text-justify text-zinc-600 leading-relaxed">
+            <p class="mb-3">
+              The deeper takeaway from this build:
+              <span class="font-semibold text-zinc-900"
+                >treating the variant as the ledger turns a multi-step pricing
+                campaign into something the storefront can run on its own.</span
+              >
+              No scheduled job, no merchant logging in to flip a switch — the
+              data on each variant carries the entire state of where the sale
+              is, and the flow just listens for the moment to act.
+            </p>
+            <p>
+              That principle generalizes well beyond tiered sales:
+              gift-with-purchase cascades, loyalty tier upgrades, segmented
+              thank-you tagging — anywhere business state can sit on the shop's
+              existing objects, the automation that drives it becomes shorter,
+              safer, and easier to reason about.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Back to Portfolio -->
+      <section class="py-16 sm:py-24">
+        <div class="mx-auto max-w-7xl px-6">
+          <div class="flex items-center justify-center">
+            <a
+              href="../../index.html#case-studies"
+              class="inline-flex items-center gap-2 rounded-md border border-zinc-300 bg-white px-6 py-3 text-sm font-medium tracking-tight text-zinc-900 hover:bg-zinc-50 transition"
+            >
+              <i data-lucide="arrow-left" class="h-4 w-4"></i>
+              <span>Back to home</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="border-t border-zinc-200 bg-zinc-50">
+      <div class="mx-auto max-w-7xl px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div>
+            <div
+              class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-900 text-sm font-medium tracking-tight"
+            >
+              AD
+            </div>
+            <p class="mt-4 text-sm text-zinc-600 max-w-xs">
+              Portfolio of Amul Dahal. Building elegant products with precision
+              and care.
+            </p>
+            <div class="mt-4 flex items-center gap-3">
+              <a
+                href="https://www.linkedin.com/in/amul-dahal-56a5962a4"
+                target="_blank"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900 p-0.5"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <path
+                    fill="currentColor"
+                    d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.github.com/amdl89"
+                target="_blank"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900 p-0.5"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <path
+                    fill="currentColor"
+                    d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="mailto:amuldahal89@gmail.com"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-300 bg-white text-zinc-700 hover:text-zinc-900 p-0.5"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <path
+                    fill="currentColor"
+                    d="M112 128C85.5 128 64 149.5 64 176C64 191.1 71.1 205.3 83.2 214.4L291.2 370.4C308.3 383.2 331.7 383.2 348.8 370.4L556.8 214.4C568.9 205.3 576 191.1 576 176C576 149.5 554.5 128 528 128L112 128zM64 260L64 448C64 483.3 92.7 512 128 512L512 512C547.3 512 576 483.3 576 448L576 260L377.6 408.8C343.5 434.4 296.5 434.4 262.4 408.8L64 260z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-base font-semibold tracking-tight">Links</h4>
+            <ul class="mt-4 space-y-2 text-sm text-zinc-600">
+              <li>
+                <a href="../../index.html#projects" class="hover:text-zinc-900"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a href="../../index.html#about" class="hover:text-zinc-900"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a href="../../index.html#skills" class="hover:text-zinc-900"
+                  >Skills</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-base font-semibold tracking-tight">Get in touch</h4>
+            <p class="mt-4 text-sm text-zinc-600">
+              Open to collaborations, speaking, and freelance engagements.
+            </p>
+            <a
+              href="mailto:amuldahal89@gmail.com"
+              class="mt-4 inline-flex items-center gap-2 rounded-md bg-zinc-900 px-4 py-2.5 text-white text-sm font-medium tracking-tight hover:bg-black transition"
+            >
+              <i data-lucide="send" class="h-4 w-4"></i>
+              <span>Email amuldahal89@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="mt-12 flex items-center justify-between border-t border-zinc-200 pt-6 text-xs text-zinc-500"
+        >
+          <span>© <span id="year"></span> Amul Dahal</span>
+          <span>Crafted with intention.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+
+      const mobileBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileBtn?.addEventListener("click", () => {
+        const open = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        mobileBtn.innerHTML = open
+          ? '<i data-lucide="x" class="h-5 w-5"></i>'
+          : '<i data-lucide="menu" class="h-5 w-5"></i>';
+        lucide.createIcons();
+      });
+
+      mobileMenu?.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+            mobileBtn.innerHTML = '<i data-lucide="menu" class="h-5 w-5"></i>';
+            lucide.createIcons();
+          }
+        });
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function smoothScrollToAnchor(e) {
+        const href = e.currentTarget.getAttribute("href");
+        if (!href || !href.startsWith("#")) return;
+        if (href.includes("index.html#")) return;
+
+        const targetId = href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
+
+        e.preventDefault();
+        const header = document.querySelector("header");
+        const headerHeight = header ? header.offsetHeight : 0;
+        const targetPosition =
+          targetElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+        window.scrollTo({ top: targetPosition, behavior: "smooth" });
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        document
+          .querySelectorAll('header a[href^="#"], footer a[href^="#"]')
+          .forEach((link) => {
+            link.addEventListener("click", smoothScrollToAnchor);
+          });
+      });
+    </script>
+  </body>
+</html>
